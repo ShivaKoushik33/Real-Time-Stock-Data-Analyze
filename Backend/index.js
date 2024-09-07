@@ -19,5 +19,5 @@ app.listen(port,()=>{
     console.log('Server started and running at '+port);
 })
 app.use("/",(req,res)=>{
-    res.send("<h1>Welcome</h1>");
+    res.send("<h1>Welcome to Real-Time StockData Analyzer</h1>");
 })
