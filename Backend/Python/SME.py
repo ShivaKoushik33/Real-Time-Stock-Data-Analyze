@@ -35,6 +35,11 @@ try:
         print(json.dumps(result))
 
 except Exception as e:
+    result={
+        "SME_50": "Error",
+        "SME_200": "Error",
+        "suggestion": "there can be an error in the ticker or network issue or a delsited ticker"
+    }
     print(json.dumps({'err': str(e)}))
 
 finally:

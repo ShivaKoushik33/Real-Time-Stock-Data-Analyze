@@ -1,7 +1,6 @@
 const logger = (req, res, next) => {
     const start = Date.now();
     const { method, originalUrl } = req;
-
     // Capture response status and time
     res.on('finish', () => {
         const duration = Date.now() - start;
