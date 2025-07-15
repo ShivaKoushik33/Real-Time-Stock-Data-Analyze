@@ -9,8 +9,8 @@ const SearchBar = () => {
   const [selectedTicker, setSelectedTicker] = useState("");  // To keep track of selected ticker
 
   const filteredData = Data.filter(item =>
-    item.CompanyName.toLowerCase().includes(input.toLowerCase()) ||
-    item.Ticker.toLowerCase().includes(input.toLowerCase())
+    item.CompanyName.toLowerCase().includes(input.toLowerCase()) 
+    // item.Ticker.toLowerCase().includes(input.toLowerCase())
   );
 
   const handleStockClick = async (ticker) => {
@@ -18,7 +18,7 @@ const SearchBar = () => {
     setSelectedTicker(ticker);
     setLoading(true);  
     try {
-      const response = await fetch("https://real-time-stock-data-analyze.onrender.com/tickerSME/result", {
+      const response = await fetch("http://localhost:5000/tickerSME/result", {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',

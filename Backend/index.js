@@ -9,9 +9,8 @@ dotEnv.config();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
-
-
-
+const logger=require("./Middleware/logger");
+app.use(logger);
 
 
 app.use("/tickerSME",tickerRoute)
