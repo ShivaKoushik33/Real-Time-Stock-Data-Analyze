@@ -8,6 +8,7 @@ function App(){
         <Routes>
           <Route path="/SME" element={<SearchBar />} />
           <Route path="/" element={<LandingPage />} />
+        
         </Routes>
       </BrowserRouter>
     );

@@ -1,5 +1,6 @@
 const express=require("express");
 const {analyzeStock}=require("../Controllers/tickerController");
+const {analyzeRSI}=require("../Controllers/tickerController");
 const router = express.Router();
 
 
@@ -13,6 +14,7 @@ router.post('/result',analyzeStock);
 //         res.status(500).json({error:error.message});
 //     }
 // } );
+router.post('/rsi',analyzeRSI);
 
 
 module.exports=router

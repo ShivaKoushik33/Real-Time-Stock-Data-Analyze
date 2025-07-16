@@ -5,7 +5,6 @@ const {spawn}=require("child_process");
 const  path  = require('path');
 
 
-
 const analyzeStock = async (req, res) => {
     const { ticker } = req.body;
     if (!ticker) {
@@ -63,8 +62,66 @@ const analyzeStock = async (req, res) => {
     });
 };
 
+const analyzeRSI=async(req,res)=>{
+    
+    const { ticker } = req.body;    
+    if(!ticker) {
+        return res.status(400).json({
+            RSI: "Error",
+            suggestion: "Ticker is required"
+        });
+    }
+     let errorOutput = '';
+    const scriptPath = path.join(__dirname, "../Python/RSI.py");
+    const pythonProcess = spawn('python', [scriptPath, ticker]);
+    let output = '';
+    pythonProcess.stdout.on('data', (data) => {
+        output += data.toString();
+    });
+    pythonProcess.stderr.on('data', (data) => {
+        errorOutput += data.toString();
+    });
+
+
+    pythonProcess.on('close', (code) => {
+    if (code !== 0 || errorOutput) {
+        console.error(`Python process exited with code ${code}`);
+        return res.status(500).json({
+            SME_50: "Error",
+            SME_200: "Error",
+            RSI: "Error",
+            suggestion: `Python process failed: Exit code ${code}`
+        });
+    }
+
+    try {
+        const parsedOutput = JSON.parse(output);
+
+        if (parsedOutput.err || parsedOutput.suggestion?.includes("Error")) {
+            return res.status(500).json({
+                SME_50: "Error",
+                SME_200: "Error",
+                RSI: "Error",
+                suggestion: parsedOutput.suggestion || "Failed to fetch data"
+            });
+        }
+
+        return res.json(parsedOutput); // Will include RSI and suggestion
+
+    } catch (err) {
+        console.error("JSON parse error:", err.message);
+        return res.status(500).json({
+            SME_50: "Error",
+            SME_200: "Error",
+            RSI: "Error",
+            suggestion: `Failed to analyze stock: ${err.message}`
+        });
+    }
+});
+
+
+}
 
 
 
-
-module.exports={analyzeStock};
+module.exports={analyzeStock,analyzeRSI};

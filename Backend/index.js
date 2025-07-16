@@ -13,7 +13,9 @@ const logger=require("./Middleware/logger");
 app.use(logger);
 
 
-app.use("/tickerSME",tickerRoute)
+app.use("/tickerSME",tickerRoute);
+app.use("/tickerRSI",tickerRoute);
+
 app.listen(port,()=>{
     console.log('Server started and running at '+port);
 })
