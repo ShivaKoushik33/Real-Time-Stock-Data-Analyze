@@ -5,8 +5,10 @@ const app=express();
 const bodyParser=require("body-parser");
 const cors = require('cors');
 const tickerRoute = require('./Routes/tickerRouter');
-dotEnv.config();
+const cors = require('cors');
 app.use(cors());
+dotEnv.config();
+
 app.use(bodyParser.json());
 app.use(express.json());
 const logger=require("./Middleware/logger");

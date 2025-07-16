@@ -21,7 +21,7 @@ const SearchBar = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/tickerSME/rsi", {
+      const response = await fetch("https://stocksense-backend-bmpn.onrender.com/tickerSME/rsi", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
