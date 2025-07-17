@@ -6,15 +6,21 @@ const bodyParser=require("body-parser");
 const tickerRoute = require('./Routes/tickerRouter');
 const cors = require('cors');
 dotEnv.config();
-const corsOptions={
-    origin:[
-        "http://localhost:5173",
-        "https://real-time-stock-data-analyze.vercel.app",
-    ],
-    credential:true,
+// const corsOptions={
+//     origin:[
+//         "http://localhost:5173",
+//         "https://real-time-stock-data-analyze.vercel.app",
 
-}
-app.use(cors());
+//     ],
+//     credential:true,
+
+// }
+// app.use(cors());
+
+app.use(cors({
+    origin: 'https://real-time-stock-data-analyze.vercel.app/',
+    methods: ['GET', 'POST',"PUT","DELETE"]  // Allow only GET and POST requests
+  }));
 
 
 app.use(bodyParser.json());
