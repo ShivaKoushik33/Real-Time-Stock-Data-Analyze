@@ -5,8 +5,17 @@ const app=express();
 const bodyParser=require("body-parser");
 const tickerRoute = require('./Routes/tickerRouter');
 const cors = require('cors');
-app.use(cors());
 dotEnv.config();
+const corsOptions={
+    origin:[
+        "http://localhost:5173",
+        "https://real-time-stock-data-analyze.vercel.app",
+    ],
+    credential:true,
+
+}
+app.use(cors());
+
 
 app.use(bodyParser.json());
 app.use(express.json());
