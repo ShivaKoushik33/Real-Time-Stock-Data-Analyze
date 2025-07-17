@@ -21,7 +21,7 @@ const SearchBar = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://stocksense-backend-bmpn.onrender.com/tickerSME/rsi", {
+      const response = await fetch("https://real-time-stock-data-analyze.onrender.com/tickerSME/rsi", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

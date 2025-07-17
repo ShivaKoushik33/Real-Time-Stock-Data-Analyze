@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: stock-analyzer
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
