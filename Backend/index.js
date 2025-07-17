@@ -18,7 +18,7 @@ dotEnv.config();
 // app.use(cors());
 
 app.use(cors({
-    origin: 'https://real-time-stock-data-analyze.vercel.app/',
+    origin: 'https://real-time-stock-data-analyze.vercel.app',
     methods: ['GET', 'POST',"PUT","DELETE"]  // Allow only GET and POST requests
   }));
 
